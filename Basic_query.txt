@@ -1,0 +1,24 @@
+SELECT STATUS FROM V$INSTANCE;
+
+CREATE USER practice_hibernate IDENTIFIED BY password;
+
+GRANT CONNECT, RESOURCE TO practice_hibernate;
+GRANT CREATE SESSION ,GRANT ANY PRIVILEGE TO practice_hibernate;
+
+
+-- CREATE TABLE EMP WITH PRIMARY KEY AS (emp_id)
+CREATE TABLE EMP(
+    emp_id NUMBER(4, 0),
+    emp_name VARCHAR2(26),
+    emp_salary NUMBER(8,2),
+    CONSTRAINT emp_col1_id_pk PRIMARY KEY (emp_id)
+);
+
+-- CREATE TABLE DEPT WITH PRIMARY KEY AS (dept_id), FOREIGN KEY AS (emp_id)
+CREATE TABLE DEPT(
+    dept_id NUMBER(4, 0),
+    dept_name VARCHAR2(26),
+    emp_id NUMBER(4, 0),
+    CONSTRAINT dept_col1_dept_id_pk PRIMARY KEY (dept_id),
+    CONSTRAINT dept_col3_emp_id_fk FOREIGN KEY (emp_id) REFERENCES EMP(emp_id)
+);
